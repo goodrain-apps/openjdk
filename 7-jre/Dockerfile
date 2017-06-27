@@ -1,4 +1,4 @@
-FROM openjdk:8u131-jdk-alpine
+FROM openjdk:7u131-jre-alpine
 MAINTAINER zhouyq@goodrain.com
 
 # china repositories mirror
