@@ -1,5 +1,5 @@
 build:
-	@docker build --tag=goodrainapps/openjre .
+	@docker build --tag=goodrainapps/openjdk .
 
 release: build
-	@docker build --tag=goodrainapps/openjre:$(shell cat VERSION)-jre-alpine .
+	@docker build --tag=goodrainapps/openjdk:$(shell cat VERSION)-jre-alpine .

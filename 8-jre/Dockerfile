@@ -2,7 +2,7 @@ FROM openjdk:8u131-jre-alpine
 MAINTAINER zhouyq@goodrain.com
 
 # china repositories mirror
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+#RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 # modify timezone and install the necessary software
 RUN apk add --no-cache tzdata libc6-compat libstdc++ tar sed wget curl bash su-exec netcat-openbsd && \
@@ -12,5 +12,11 @@ RUN apk add --no-cache tzdata libc6-compat libstdc++ tar sed wget curl bash su-e
        echo "Asia/Shanghai" >  /etc/timezone && \
        date && apk del --no-cache tzdata && \
        sed -i -r 's#^(securerandom.source)=.*#\1=file:/dev/./urandom/#' $JAVA_HOME/lib/security/java.security
+
+# add pinpoint apm agent
+ENV PINPOINT_AGETN_VERSION="1.7.0-RC2"
+ENV PINPOINT_AGENT_PATH="/usr/local/pinpoint-agent" 
+RUN mkdir -pv $PINPOINT_AGENT_PATH \
+    && curl -ks https://pkg.goodrain.com/apps/pinpoint/pinpoint-agent-${PINPOINT_AGETN_VERSION}.tar.gz | tar xz -C /usr/local/pinpoint-agent
 
 ENV LANG en_US.utf8
