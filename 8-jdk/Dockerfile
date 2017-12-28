@@ -19,4 +19,8 @@ ENV PINPOINT_AGENT_PATH="/usr/local/pinpoint-agent"
 RUN mkdir -pv $PINPOINT_AGENT_PATH \
     && curl -ks https://pkg.goodrain.com/apps/pinpoint/pinpoint-agent-${PINPOINT_AGETN_VERSION}.tar.gz | tar xz -C /usr/local/pinpoint-agent
 
+# add setmem.sh
+RUN mkdir -pv /opt/goodrain/java/
+COPY setmem.sh /opt/goodrain/java/setmem.sh
+
 ENV LANG en_US.utf8
