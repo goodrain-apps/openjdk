@@ -14,10 +14,10 @@ RUN apk add --no-cache tzdata libc6-compat libstdc++ tar sed wget curl bash su-e
        sed -i -r 's#^(securerandom.source)=.*#\1=file:/dev/./urandom/#' $JAVA_HOME/lib/security/java.security
 
 # add pinpoint apm agent
-ENV PINPOINT_AGETN_VERSION="1.7.0"
+ENV PINPOINT_AGETN_VERSION="1.7.2"
 ENV PINPOINT_AGENT_PATH="/usr/local/pinpoint-agent" 
 RUN mkdir -pv $PINPOINT_AGENT_PATH \
-    && curl -ks https://pkg.goodrain.com/apps/pinpoint/pinpoint-agent-${PINPOINT_AGETN_VERSION}.tar.gz | tar xz -C /usr/local/pinpoint-agent
+    && curl -ks https://pkg.goodrain.com/apps/pinpoint/pinpoint-agent-${PINPOINT_AGETN_VERSION}-SNAPSHOT.tar.gz | tar xz -C /usr/local/pinpoint-agent
 
 # add setmem.sh
 RUN mkdir -pv /opt/goodrain/java/
